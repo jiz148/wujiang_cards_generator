@@ -1,0 +1,1 @@
+from .common.services.wujiang_card_generator_service import WujiangCardGeneratorService
