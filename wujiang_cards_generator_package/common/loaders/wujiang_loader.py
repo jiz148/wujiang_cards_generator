@@ -10,7 +10,6 @@ import pandas as pd
 from pandas import DataFrame
 
 from ..constants import wujiang_constants
-from ..entities.wujiang import Wujiang
 from ..models.wujiang_model import WujiangModel
 
 
@@ -22,7 +21,7 @@ class WujiangLoader:
     ):
         self.wujiang_data: DataFrame = wujiang_data
         
-        self.wujiangs: List[Wujiang] = []
+        self.wujiangs: List[WujiangModel] = []
         
         self._load_wujiang()
         pass
@@ -48,10 +47,7 @@ class WujiangLoader:
                 spells=spells,
                 properties=properties,
             )
-            wujiang: Wujiang = Wujiang(
-                wujiang_model=wujiang_model,
-            )
-            self.wujiangs.append(wujiang)
+            self.wujiangs.append(wujiang_model)
 
-    def get_wujiangs(self) -> List[Wujiang]:
+    def get_wujiangs(self) -> List[WujiangModel]:
         return self.wujiangs

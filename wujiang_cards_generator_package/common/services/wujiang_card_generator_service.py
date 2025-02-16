@@ -9,7 +9,7 @@ from typing import (
 
 from pandas import DataFrame
 
-from ..entities.wujiang import Wujiang
+from ..models.wujiang_model import WujiangModel
 from ..loaders.wujiang_loader import WujiangLoader
 
 
@@ -24,13 +24,13 @@ class WujiangCardGeneratorService:
         wujiang_loader: WujiangLoader = WujiangLoader(
             wujiang_data=wujiang_data,
         )
-        self.wujiangs: List[Wujiang] = wujiang_loader.get_wujiangs()
+        self.wujiangs: List[WujiangModel] = wujiang_loader.get_wujiangs()
 
     def save_to_cards(
             self,
     ):
         for wujiang in self.wujiangs:
             wujiang.to_game_card_image().save(
-                os.path.join(self.save_path, f"{wujiang.name.strip('*')}.png")
+                os.path.join(self.save_path, f"01x card {wujiang.name.strip('*')}.png")
             )
         pass
