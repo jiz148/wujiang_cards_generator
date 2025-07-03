@@ -21,7 +21,6 @@ class WujiangModel(BaseModel):
     role: str
     type: str
     race: str
-    item_bag: int
     name: str
     attack: Union[int, float]
     defense: Union[int, float]
@@ -38,7 +37,7 @@ class WujiangModel(BaseModel):
         card: Image = Image.new(
             mode="RGB",
             size=(config.card_weight, config.card_height),
-            color=(0, 0, 0),
+            color=(225, 112, 0),
         )
         draw: ImageDraw.ImageDraw = ImageDraw.Draw(im=card)
 
@@ -61,7 +60,7 @@ class WujiangModel(BaseModel):
 
         draw.rectangle(
             xy=[boarder_width, boarder_width, config.card_weight - boarder_width, config.card_height - boarder_width],
-            outline="white",
+            outline="black",
             width=3,
         )
 
@@ -69,7 +68,7 @@ class WujiangModel(BaseModel):
         draw.text(
             xy=(margin+boarder_width, boarder_width),
             text=title_text,
-            fill="white",
+            fill="black",
             font=font_title,
         )
 
@@ -77,16 +76,16 @@ class WujiangModel(BaseModel):
         draw.text(
             xy=(margin+boarder_width, boarder_width + height_in_boarder * 0.05),
             text=role_text,
-            fill="white",
+            fill="black",
             font=font_info,
         )
 
         stats_text: str = (f"攻 {self.attack}  守 {self.defense}  速 {self.speed}  "
-                           f"范 {self.range}  魔 {self.mana} 槽位 {self.item_bag}")
+                           f"范 {self.range}  魔 {self.mana}")
         draw.text(
             xy=(margin+boarder_width, height_in_boarder * 0.15),
             text=stats_text,
-            fill="white",
+            fill="black",
             font=font_stats,
         )
 
@@ -94,7 +93,7 @@ class WujiangModel(BaseModel):
         draw.text(
             xy=(margin+boarder_width, height_in_boarder * 0.2),
             text="技能\n" + textwrap.fill(text=spells_text, width=int(config.card_weight / 20)),
-            fill="white",
+            fill="black",
             font=font_info,
         )
 
@@ -102,7 +101,7 @@ class WujiangModel(BaseModel):
         draw.text(
             xy=(margin+boarder_width, height_in_boarder * 0.7),
             text="特性\n" + textwrap.fill(text=properties_text, width=int(config.card_weight / 20)),
-            fill="white",
+            fill="black",
             font=font_info,
         )
 

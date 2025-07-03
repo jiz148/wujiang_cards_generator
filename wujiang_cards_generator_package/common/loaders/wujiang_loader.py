@@ -37,7 +37,6 @@ class WujiangLoader:
                 role=row[wujiang_constants.ROLE_COL],
                 type=row[wujiang_constants.TYPE_COL],
                 race=row[wujiang_constants.RACE_COL],
-                item_bag=row[wujiang_constants.ITEM_BAG_COL],
                 name=row[wujiang_constants.NAME_COL],
                 attack=row[wujiang_constants.ATTACK_COL],
                 defense=row[wujiang_constants.DEFENSE_COL],
